@@ -21,8 +21,8 @@ class Jugador(pygame.sprite.Sprite):
         self.image=pygame.image.load(archivo).convert_alpha()
         self.rect=self.image.get_rect()
         self.puntuacion=0
-        self.vida=10
-        self.click = False
+  
+e
 
     def update(self):
         if self.click:
@@ -52,9 +52,7 @@ class Enemigo(pygame.sprite.Sprite):
         self.rect.x-=self.vel
         self.tiempo()
 
-class Disparo(pygame.sprite.Sprite):
-    def __init__(self, archivo):
-        pygame.sprite.Sprite.__init__(self)
+Sprite.__init__(self)
         self.image=pygame.image.load(archivo).convert_alpha()
         self.rect=self.image.get_rect()
         self.vel=10
@@ -134,38 +132,7 @@ if __name__=='__main__':
             if event.type == pygame.QUIT:
                 fin=True
             if event.type == pygame.KEYDOWN:
-				if event.key== pygame.K_1:
-
-					b=Disparo('sprites/ball.png')
-					b.rect.x=jp.rect.x
-					b.rect.y=jp.rect.y
-					balas.add(b)
-					todos.add(b)
-				if event.key== pygame.K_2:
-					b=Disparo('sprites/ball.png')
-					b.rect.x=icono.rect.x
-					b.rect.y=icono.rect.y
-					balas.add(b)
-					todos.add(b)
-				if event.key== pygame.K_3:
-					b=Disparo('sprites/ball.png')
-					b.rect.x=icono2.rect.x
-					b.rect.y=icono2.rect.y
-					balas.add(b)
-					todos.add(b)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if jp.rect.collidepoint(event.pos):
-                    jp.click = True
-                for ic in iconos:
-                    if ic.rect.collidepoint(event.pos):
-                        print "icono " + str(ic.id)
-                if icono.rect.collidepoint(event.pos):
-                    icono.click = True
-                for ic in iconos:
-                    if ic.rect.collidepoint(event.pos):
-                        print "icono " + str(ic.id)
-                if icono2.rect.collidepoint(event.pos):
-                    icono2.click = True
+		
                 for ic in iconos:
                     if ic.rect.collidepoint(event.pos):
                         print "icono " + str(ic.id)
@@ -177,32 +144,7 @@ if __name__=='__main__':
                 icono2.click = False
 
         #eliminar balas fuera
-        for b in balas:
-            ls_imp=pygame.sprite.spritecollide(b,enemigos,True)
-            for b_imp in ls_imp:
-                balas.remove(b)
-                todos.remove(b)
-                jp.puntuacion+=1
-                puntos=fuente.render("PUNTUACION: "+str(jp.puntuacion),True,NEGRO)
-            if b.rect.x>ANCHO:
-                balas.remove(b)
-                todos.remove(b)
-
-        for e in enemigos:
-            if e.fuego==1:
-                b=Disparo('sprites/fire.png')
-                b.rect.x=e.rect.x
-                b.rect.y=e.rect.y
-                b.dir=1
-                ebalas.add(b)
-                todos.add(b)
-
-            if e.rect.x<0:
-                enemigos.remove(e)
-                todos.remove(e)
-                
-
-        pantalla.fill(0)
+        
         pantalla.blit(fondo,(0,0))
         pantalla.blit(texto,(200,30))
         pantalla.blit(puntos,(200,10))
